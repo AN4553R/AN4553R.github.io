@@ -6,11 +6,17 @@
   <title>Abdelrahman Aly - Software Engineer</title>
   <meta name="description" content="Software Engineer specializing in backend systems and AWS cloud services">
   <link rel="icon" href="assets/img/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
+  <!-- Loader -->
+  <div id="loader">
+    <span class="loader-name">Abdelrahman Aly</span>
+    <div class="loader-bar"></div>
+  </div>
+
   <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
     <i class="fas fa-sun"></i>
@@ -106,11 +112,27 @@
         </div>
       </section>
 
+      <!-- Writing Section -->
+      <section class="section writing">
+        <h2 class="section-title">Writing</h2>
+        <div class="blog-timeline">
+          <div class="blog-item">
+            <span class="blog-year">2020</span>
+            <a href="https://medium.com/gitconnected/automating-integration-and-deployment-to-remote-server-63a2b6576ebf" target="_blank" class="blog-title">
+              Automating Integration and Deployment to VPS
+            </a>
+          </div>
+          <div class="blog-item">
+            <span class="blog-year">2021</span>
+            <a href="https://dev.to/an4553r/ubuntu-login-loop-case-solution-58k4" target="_blank" class="blog-title">
+              OS Overview - Ubuntu Login Loop (Case & Solution)
+            </a>
+          </div>
+        </div>
+      </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-    </footer>
   </div>
 
   <script>
@@ -119,7 +141,7 @@
     const icon = themeToggle.querySelector('i');
 
     // Check for saved theme preference or default to dark
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    const currentTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', currentTheme);
     updateIcon(currentTheme);
 
@@ -141,6 +163,9 @@
     // Fade in on load
     window.addEventListener('load', () => {
       document.body.classList.add('loaded');
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1100);
     });
 
     // Intersection Observer for fade-in animations
