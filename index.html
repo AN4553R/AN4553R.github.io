@@ -22,12 +22,14 @@
   </button>
 
   <div class="container">
+
     <!-- Header -->
     <header class="header">
       <div class="header-content">
         <h1 class="name">Abdelrahman Aly</h1>
         <p class="aka">aka Abdo</p>
         <p class="title">Software Development Engineer II</p>
+        <p class="currently">CURRENTLY AT AWS · GDAŃSK</p>
         <div class="social-links">
           <a href="https://www.linkedin.com/in/an4553r/" target="_blank" aria-label="LinkedIn">
             <i class="fab fa-linkedin"></i>
@@ -47,9 +49,10 @@
 
     <!-- Main Content -->
     <main class="main-content">
+
       <!-- About Section -->
       <section class="section about">
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title"><span class="section-num">01 /</span> About</h2>
         <p class="about-text">
           Engineer @ AWS | RDS DMS | Focused on enabling smooth and efficient database migrations that power the cloud.
         </p>
@@ -60,7 +63,7 @@
 
       <!-- Experience Section -->
       <section class="section experience">
-        <h2 class="section-title">Experience</h2>
+        <h2 class="section-title"><span class="section-num">02 /</span> Experience</h2>
         <div class="experience-timeline">
           <div class="experience-item">
             <div class="company">Amazon Web Services (AWS)</div>
@@ -103,7 +106,7 @@
 
       <!-- Education Section -->
       <section class="section education">
-        <h2 class="section-title">Education</h2>
+        <h2 class="section-title"><span class="section-num">03 /</span> Education</h2>
         <div class="education-item">
           <h3>Bachelor's Degree, Computer Science</h3>
           <div class="institution">Assiut University</div>
@@ -113,7 +116,7 @@
 
       <!-- Writing Section -->
       <section class="section writing">
-        <h2 class="section-title">Writing</h2>
+        <h2 class="section-title"><span class="section-num">04 /</span> Writing</h2>
         <div class="blog-timeline">
           <div class="blog-item">
             <span class="blog-year">2020</span>
@@ -132,6 +135,40 @@
 
     </main>
 
+    <!-- Ticker -->
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <span>database modernization</span>
+        <span class="sep">·</span>
+        <span>cloud-native architectures</span>
+        <span class="sep">·</span>
+        <span>backend systems</span>
+        <span class="sep">·</span>
+        <span>distributed databases</span>
+        <span class="sep">·</span>
+        <span>AWS infrastructure</span>
+        <span class="sep">·</span>
+        <span>data migration</span>
+        <span class="sep">·</span>
+        <span>enterprise workloads</span>
+        <span class="sep">·</span>
+        <span>database modernization</span>
+        <span class="sep">·</span>
+        <span>cloud-native architectures</span>
+        <span class="sep">·</span>
+        <span>backend systems</span>
+        <span class="sep">·</span>
+        <span>distributed databases</span>
+        <span class="sep">·</span>
+        <span>AWS infrastructure</span>
+        <span class="sep">·</span>
+        <span>data migration</span>
+        <span class="sep">·</span>
+        <span>enterprise workloads</span>
+        <span class="sep">·</span>
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -139,7 +176,6 @@
     const html = document.documentElement;
     const icon = themeToggle.querySelector('i');
 
-    // Check for saved theme preference or default to dark
     const currentTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', currentTheme);
     updateIcon(currentTheme);
@@ -152,26 +188,15 @@
     });
 
     function updateIcon(theme) {
-      if (theme === 'dark') {
-        icon.className = 'fas fa-sun';
-      } else {
-        icon.className = 'fas fa-moon';
-      }
+      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
 
-    // Fade in on load
     window.addEventListener('load', () => {
       document.body.classList.add('loaded');
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
       }, 1100);
     });
-
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -180,11 +205,9 @@
           observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
-    });
+    document.querySelectorAll('.section').forEach(section => observer.observe(section));
   </script>
 </body>
 </html>

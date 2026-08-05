@@ -563,6 +563,60 @@ body.loaded {
   }
 }
 
+/* Currently line */
+.currently {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-2);
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* Ticker */
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+  padding: 12px 0;
+  margin-bottom: 60px;
+}
+
+.ticker {
+  display: flex;
+  gap: 20px;
+  white-space: nowrap;
+  animation: ticker 25s linear infinite;
+  width: max-content;
+}
+
+.ticker span {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted-2);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.ticker .sep {
+  color: var(--accent);
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Section numbers */
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-right: 10px;
+  font-weight: 400;
+}
+
 /* Selection */
 ::selection {
   background: var(--accent);
