@@ -4,8 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abdelrahman Aly - Software Engineer</title>
-  <meta name="description" content="Software Engineer specializing in backend systems and AWS cloud services">
+  <meta name="description" content="Software Engineer specializing in backend systems, cloud architecture, and database migrations at AWS.">
   <link rel="icon" href="assets/img/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://abdoaly.com">
+  <meta property="og:title" content="Abdelrahman Aly — Software Engineer">
+  <meta property="og:description" content="Backend systems. Cloud infrastructure. Databases. SDE II at AWS working on database modernization.">
+  <meta property="og:site_name" content="Abdelrahman Aly">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://abdoaly.com">
+  <meta name="twitter:title" content="Abdelrahman Aly — Software Engineer">
+  <meta name="twitter:description" content="Backend systems. Cloud infrastructure. Databases. SDE II at AWS working on database modernization.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -15,6 +28,12 @@
     <span class="loader-name">Abdelrahman Aly</span>
     <div class="loader-bar"></div>
   </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+    <span>top</span>
+  </button>
 
   <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -27,18 +46,14 @@
     <header class="header">
       <div class="header-content">
         <h1 class="name">Abdelrahman Aly</h1>
-        <p class="aka">aka Abdo</p>
+        <p class="tagline">Backend systems. Cloud infrastructure. Databases.</p>
         <p class="title">Software Development Engineer II</p>
-        <p class="currently">CURRENTLY AT AWS · GDAŃSK</p>
         <div class="social-links">
           <a href="https://www.linkedin.com/in/an4553r/" target="_blank" aria-label="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
           <a href="https://medium.com/@an4553r" target="_blank" aria-label="Medium">
             <i class="fab fa-medium"></i>
-          </a>
-          <a href="https://dev.to/an4553r" target="_blank" aria-label="DEV">
-            <i class="fab fa-dev"></i>
           </a>
           <a href="https://github.com/AN4553R" target="_blank" aria-label="GitHub">
             <i class="fab fa-github"></i>
@@ -54,11 +69,9 @@
       <section class="section about">
         <h2 class="section-title"><span class="section-num">01 /</span> About</h2>
         <p class="about-text">
-          Engineer @ AWS | RDS DMS | Focused on enabling smooth and efficient database migrations that power the cloud.
+          Software engineer focused on backend systems and cloud infrastructure. Currently at AWS working on database modernization — helping enterprises migrate legacy workloads to modern cloud-native architectures.
         </p>
-        <p class="about-text">
-          Working on a world class problem to transform legacy enterprise workloads into modern AWS native application architectures.
-        </p>
+        <p class="connect-line">Connect on <a href="https://www.linkedin.com/in/an4553r/" target="_blank">LinkedIn</a></p>
       </section>
 
       <!-- Experience Section -->
@@ -189,6 +202,15 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.section').forEach(section => observer.observe(section));
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 300);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>

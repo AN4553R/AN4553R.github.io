@@ -124,6 +124,13 @@ body.loaded {
   line-height: 0.94;
 }
 
+.tagline {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
 .aka {
   font-size: 1rem;
   color: var(--muted);
@@ -561,6 +568,56 @@ body.loaded {
   to {
     left: 0;
   }
+}
+
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid var(--hair);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  letter-spacing: 0.04em;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* Now blurb */
+.now-blurb {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hair);
+  font-size: 0.95rem;
+  color: var(--muted-2);
+  font-family: var(--font-mono);
+  letter-spacing: 0.01em;
+}
+
+.now-blurb::before {
+  content: '→ ';
+  color: var(--accent);
 }
 
 /* Currently line */
