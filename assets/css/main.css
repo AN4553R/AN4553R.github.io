@@ -573,11 +573,11 @@ body.loaded {
 /* Back to Top */
 .back-to-top {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 24px;
+  right: 24px;
   padding: 8px 14px;
   border-radius: 20px;
-  background: transparent;
+  background: var(--bg);
   border: 1px solid var(--hair);
   color: var(--muted);
   font-family: var(--font-mono);
@@ -589,8 +589,9 @@ body.loaded {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 1000;
+  z-index: 9998;
   letter-spacing: 0.04em;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .back-to-top.visible {
@@ -602,6 +603,15 @@ body.loaded {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 16px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
 }
 
 .connect-line {
