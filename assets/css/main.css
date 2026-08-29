@@ -604,6 +604,23 @@ body.loaded {
   transform: translateY(-3px);
 }
 
+.connect-line {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: var(--muted-2);
+}
+
+.connect-line a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.connect-line a:hover {
+  border-bottom-color: var(--accent);
+}
+
 /* Now blurb */
 .now-blurb {
   margin-top: 24px;
