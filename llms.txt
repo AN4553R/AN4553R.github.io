@@ -24,11 +24,6 @@ Abdelrahman Aly is a Software Engineer with 6 years of experience specializing i
 
 - B.S. Computer Science, Assiut University, Egypt (2015 – 2019)
 
-## Writing
-
-- [Automating Integration and Deployment to VPS](https://medium.com/gitconnected/automating-integration-and-deployment-to-remote-server-63a2b6576ebf) — Medium, 2020
-- [OS Overview - Ubuntu Login Loop (Case & Solution)](https://dev.to/an4553r/ubuntu-login-loop-case-solution-58k4) — DEV.to, 2021
-
 ## Links
 
 - Website: https://abdoaly.com
