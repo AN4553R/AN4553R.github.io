@@ -24,197 +24,143 @@
   <meta name="twitter:title" content="Abdelrahman Aly — Software Engineer">
   <meta name="twitter:description" content="Backend systems. Cloud infrastructure. Databases. SDE II at AWS working on database modernization.">
   <meta name="twitter:image" content="https://abdoaly.com/assets/img/og-image.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-  <!-- Loader -->
-  <div id="loader">
-    <span class="loader-name">Abdelrahman Aly</span>
-    <div class="loader-bar"></div>
-  </div>
 
-  <!-- Back to Top -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-    <span>top</span>
-  </button>
-
-  <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <i class="fas fa-sun"></i>
+    <svg id="themeIcon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+    <span class="theme-tip" id="themeTip"></span>
   </button>
 
-  <div class="container">
-
-    <!-- Header -->
-    <header class="header">
-      <div class="header-content">
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="hero">
+      <div class="hero-inner">
         <h1 class="name">Abdelrahman Aly</h1>
-        <p class="tagline">Backend systems. Cloud infrastructure. Databases.</p>
-        <p class="title">Software Development Engineer II</p>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/an4553r/" target="_blank" aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://medium.com/@an4553r" target="_blank" aria-label="Medium">
-            <i class="fab fa-medium"></i>
-          </a>
-          <a href="https://github.com/AN4553R" target="_blank" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-
-      <!-- About Section -->
-      <section class="section about">
-        <h2 class="section-title"><span class="section-num">01 /</span> About</h2>
-        <p class="about-text">
-          Software engineer focused on backend systems and cloud infrastructure. Currently at AWS working on database modernization — helping enterprises migrate legacy workloads to modern cloud-native architectures.
-        </p>
-        <p class="connect-line">Connect on <a href="https://www.linkedin.com/in/an4553r/" target="_blank">LinkedIn</a></p>
-      </section>
-
-      <!-- Experience Section -->
-      <section class="section experience">
-        <h2 class="section-title"><span class="section-num">02 /</span> Experience</h2>
-        <div class="experience-timeline">
-          <div class="experience-item">
-            <div class="company">Amazon Web Services (AWS)</div>
-            <div class="experience-header">
-              <h3>Software Development Engineer II - RDS/DMS</h3>
-              <span class="period">December 2024 - Present</span>
-            </div>
-            <div class="experience-role">
-              <h4>Software Development Engineer - RDS/DMS</h4>
-              <span class="period">October 2022 - December 2024</span>
-            </div>
-            <p class="description">
-              Developing solutions for AWS Database Migration Service (DMS) that enable secure, non-disruptive migrations of enterprise databases to AWS, supporting both homogeneous and heterogeneous database migrations.
-            </p>
-          </div>
-
-          <div class="experience-item">
-            <div class="experience-header">
-              <h3>Software Development Engineer</h3>
-              <span class="period">January 2022 - June 2022</span>
-            </div>
-            <div class="company">Dubizzle (formerly OLX)</div>
-            <p class="description">
-              Worked on building scalable platform solutions for the classifieds field, part of the Back-end team that ensures system consistency and improves user experience.
-            </p>
-          </div>
-
-          <div class="experience-item">
-            <div class="experience-header">
-              <h3>Software Development Engineer</h3>
-              <span class="period">December 2019 - December 2021</span>
-            </div>
-            <div class="company">Digizilla LLC</div>
-            <p class="description">
-              Worked on developing, customizing, and maintaining Odoo ERP modules across multiple small and medium-sized projects. Migrated systems from older Odoo versions to newer ones, built deployment automation, and containerized applications.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Education Section -->
-      <section class="section education">
-        <h2 class="section-title"><span class="section-num">03 /</span> Education</h2>
-        <div class="education-item">
-          <h3>Bachelor's Degree, Computer Science</h3>
-          <div class="institution">Assiut University</div>
-          <span class="period">2015 - 2019</span>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Ticker -->
-    <div class="ticker-wrap">
-      <div class="ticker">
-        <span>database modernization</span>
-        <span class="sep">·</span>
-        <span>cloud-native architectures</span>
-        <span class="sep">·</span>
-        <span>backend systems</span>
-        <span class="sep">·</span>
-        <span>distributed databases</span>
-        <span class="sep">·</span>
-        <span>AWS infrastructure</span>
-        <span class="sep">·</span>
-        <span>data migration</span>
-        <span class="sep">·</span>
-        <span>enterprise workloads</span>
-        <span class="sep">·</span>
-        <span>database modernization</span>
-        <span class="sep">·</span>
-        <span>cloud-native architectures</span>
-        <span class="sep">·</span>
-        <span>backend systems</span>
-        <span class="sep">·</span>
-        <span>distributed databases</span>
-        <span class="sep">·</span>
-        <span>AWS infrastructure</span>
-        <span class="sep">·</span>
-        <span>data migration</span>
-        <span class="sep">·</span>
-        <span>enterprise workloads</span>
-        <span class="sep">·</span>
+        <p class="role">SDE II · Amazon Web Services</p>
+        <p class="bio">Backend systems and cloud infrastructure. Working on database modernization — helping enterprises migrate legacy workloads to AWS.</p>
+        <p class="now-line"><span class="pulse"></span>currently · RDS/DMS control plane, Gdańsk</p>
+        <nav class="links">
+          <a href="https://www.linkedin.com/in/an4553r/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/AN4553R" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://medium.com/@an4553r" target="_blank" rel="noopener">Writing</a>
+          <a href="#work">Work ↓</a>
+        </nav>
       </div>
     </div>
-
+    <div class="scroll-hint"><span>scroll</span></div>
   </div>
 
+  <!-- EXPERIENCE -->
+  <section class="below" id="work">
+    <p class="section-label">EXPERIENCE</p>
+    <div class="tl">
+
+      <div class="tl-item">
+        <div class="tl-row">
+          <span class="glyph now">○</span>
+          <span class="tl-date">Dec 2024</span>
+          <span class="tl-title now">SDE II (L5) — Amazon Web Services</span>
+        </div>
+        <p class="tl-desc">The control plane that orchestrates enterprise database migrations to AWS — owning core workflows from design through launch.</p>
+      </div>
+
+      <div class="tl-pipe"><span class="vline">│</span></div>
+
+      <div class="tl-item">
+        <div class="tl-row">
+          <span class="glyph">●</span>
+          <span class="tl-date">Oct 2022</span>
+          <span class="tl-title">SDE I (L4) — Amazon Web Services</span>
+        </div>
+        <p class="tl-desc">Data plane — moving self-managed on-prem databases to Amazon RDS with minimal downtime for enterprise customers.</p>
+      </div>
+
+      <div class="tl-pipe"><span class="vline">│</span></div>
+
+      <div class="tl-item">
+        <div class="tl-row">
+          <span class="glyph">●</span>
+          <span class="tl-date">Jan 2022</span>
+          <span class="tl-title">Software Engineer — Dubizzle (OLX)</span>
+        </div>
+        <p class="tl-desc">Platform solutions for the classifieds field — MENA region · 7M+ monthly users.</p>
+      </div>
+
+      <div class="tl-pipe"><span class="vline">│</span></div>
+
+      <div class="tl-item">
+        <div class="tl-row">
+          <span class="glyph">●</span>
+          <span class="tl-date">Dec 2019</span>
+          <span class="tl-title">Software Engineer — Digizilla LLC</span>
+        </div>
+        <p class="tl-desc">ERP software for small and mid-sized businesses — inventory, accounting, and operations systems built on Odoo.</p>
+      </div>
+
+    </div>
+  </section>
+
   <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
-    const icon = themeToggle.querySelector('i');
-
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    html.setAttribute('data-theme', currentTheme);
-    updateIcon(currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      updateIcon(theme);
+    // Fade in
+    document.body.style.opacity = 0;
+    window.addEventListener('load', () => {
+      document.body.style.transition = 'opacity 0.4s ease';
+      document.body.style.opacity = 1;
     });
 
-    function updateIcon(theme) {
-      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    // Theme: system default, override stored in localStorage
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    const tip  = document.getElementById('themeTip');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const ICONS = {
+      light: `<circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="8" y1="1" x2="8" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="8" y1="13" x2="8" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="1" y1="8" x2="3" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="13" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="2.93" y1="2.93" x2="4.34" y2="4.34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="11.66" y1="11.66" x2="13.07" y2="13.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="2.93" y1="13.07" x2="4.34" y2="11.66" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="11.66" y1="4.34" x2="13.07" y2="2.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
+      dark:  `<path d="M13 8.5A5.5 5.5 0 0 1 7.5 3a5.5 5.5 0 1 0 5.5 5.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>`,
+      auto:  `<path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              <path d="M8 2a6 6 0 0 1 0 12V2z" fill="currentColor" opacity="0.6"/>
+              <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>`,
+    };
+
+    const TIPS = {
+      light: 'switch to dark',
+      dark:  'switch to auto',
+      auto:  'switch to light',
+    };
+
+    function applyTheme(mode) {
+      const isDark = mode === 'dark' || (mode === 'auto' && prefersDark.matches);
+      root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      icon.innerHTML = ICONS[mode];
+      tip.textContent = TIPS[mode];
+      btn.setAttribute('aria-label', TIPS[mode]);
     }
 
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-      }, 1100);
+    const stored = localStorage.getItem('theme') || 'auto';
+    applyTheme(stored);
+
+    prefersDark.addEventListener('change', () => {
+      if ((localStorage.getItem('theme') || 'auto') === 'auto') applyTheme('auto');
     });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.section').forEach(section => observer.observe(section));
-
-    // Back to top
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.classList.toggle('visible', window.scrollY > 300);
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    btn.addEventListener('click', () => {
+      const current = localStorage.getItem('theme') || 'auto';
+      const next = current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
+      if (next === 'auto') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', next);
+      applyTheme(next);
     });
   </script>
 </body>
