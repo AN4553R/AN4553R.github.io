@@ -305,6 +305,44 @@ body {
 }
 .writing-card:hover .writing-card-cta span { transform: translate(2px, -2px); }
 
+.writing-archive {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+  padding: 18px 2px 4px;
+  border-top: 1px solid var(--hair);
+  color: var(--fg);
+  text-decoration: none;
+}
+.writing-archive > span:first-child { display: block; }
+.writing-archive-meta,
+.writing-archive-note {
+  display: block;
+  color: var(--muted-2);
+  font: 0.66rem/1.6 var(--font-mono);
+}
+.writing-archive-title {
+  display: block;
+  margin: 6px 0 4px;
+  color: var(--fg);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  transition: color 0.2s;
+}
+.writing-archive-arrow {
+  flex: 0 0 auto;
+  color: var(--accent);
+  transition: transform 0.2s;
+}
+.writing-archive:hover .writing-archive-title { color: var(--accent); }
+.writing-archive:hover .writing-archive-arrow { transform: translate(2px, -2px); }
+.writing-archive:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
 @media (max-width: 600px) {
   .writing-card { padding: 18px; }
 }
