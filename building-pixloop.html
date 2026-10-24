@@ -131,7 +131,7 @@
     </article>
 
     <footer class="story-footer">
-      <a href="blog/">← Back to the blog</a>
+      <a href="index.html#writing">← Back to recent writing</a>
     </footer>
   </main>
 
@@ -146,24 +146,30 @@
       dark: '<path d="M13 8.5A5.5 5.5 0 0 1 7.5 3a5.5 5.5 0 1 0 5.5 5.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
       auto: '<circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" opacity=".4"/>'
     };
-    const TIPS = { light: 'switch to dark', dark: 'switch to auto', auto: 'switch to light' };
+    const TIPS = { light: 'Switch to dark mode', dark: 'Switch to light mode' };
+
     function applyTheme(mode) {
       const isDark = mode === 'dark' || (mode === 'auto' && prefersDark.matches);
       root.setAttribute('data-theme', isDark ? 'dark' : 'light');
       icon.innerHTML = ICONS[mode];
-      tip.textContent = TIPS[mode];
-      btn.setAttribute('aria-label', TIPS[mode]);
+      const tipText = mode === 'auto'
+        ? `Switch to ${isDark ? 'light' : 'dark'} mode`
+        : TIPS[mode];
+      tip.textContent = tipText;
+      btn.setAttribute('aria-label', tipText);
     }
+
     const stored = localStorage.getItem('theme') || 'auto';
     applyTheme(stored);
+
     prefersDark.addEventListener('change', () => {
       if ((localStorage.getItem('theme') || 'auto') === 'auto') applyTheme('auto');
     });
+
     btn.addEventListener('click', () => {
-      const current = localStorage.getItem('theme') || 'auto';
-      const next = current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
-      if (next === 'auto') localStorage.removeItem('theme');
-      else localStorage.setItem('theme', next);
+      const currentlyDark = root.getAttribute('data-theme') === 'dark';
+      const next = currentlyDark ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
       applyTheme(next);
     });
   </script>

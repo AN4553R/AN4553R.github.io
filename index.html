@@ -148,18 +148,17 @@
               <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>`,
     };
 
-    const TIPS = {
-      light: 'switch to dark',
-      dark:  'switch to auto',
-      auto:  'switch to light',
-    };
+    const TIPS = { light: 'Switch to dark mode', dark: 'Switch to light mode' };
 
     function applyTheme(mode) {
       const isDark = mode === 'dark' || (mode === 'auto' && prefersDark.matches);
       root.setAttribute('data-theme', isDark ? 'dark' : 'light');
       icon.innerHTML = ICONS[mode];
-      tip.textContent = TIPS[mode];
-      btn.setAttribute('aria-label', TIPS[mode]);
+      const tipText = mode === 'auto'
+        ? `Switch to ${isDark ? 'light' : 'dark'} mode`
+        : TIPS[mode];
+      tip.textContent = tipText;
+      btn.setAttribute('aria-label', tipText);
     }
 
     const stored = localStorage.getItem('theme') || 'auto';
@@ -170,10 +169,9 @@
     });
 
     btn.addEventListener('click', () => {
-      const current = localStorage.getItem('theme') || 'auto';
-      const next = current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
-      if (next === 'auto') localStorage.removeItem('theme');
-      else localStorage.setItem('theme', next);
+      const currentlyDark = root.getAttribute('data-theme') === 'dark';
+      const next = currentlyDark ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
       applyTheme(next);
     });
   </script>
