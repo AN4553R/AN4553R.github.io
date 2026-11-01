@@ -96,7 +96,7 @@
     .sequence-visual svg tspan { fill: var(--sequence-fg) !important; }
     .sequence-visual svg .noteText { fill: var(--sequence-muted) !important; }
     .sequence-caption { margin-top: 12px; color: var(--muted); font-size: .86rem; line-height: 1.7; }
-    .sequence-dialog { width: min(1100px, calc(100vw - 24px)); max-width: none; height: min(900px, calc(100dvh - 24px)); max-height: none; padding: 16px; overflow: hidden; border: 1px solid var(--hair); border-radius: 18px; background: var(--bg); color: var(--fg); }
+    .sequence-dialog { position: fixed; inset: 0; margin: auto; width: min(1100px, calc(100vw - 24px)); max-width: none; height: min(900px, calc(100dvh - 24px)); max-height: none; padding: 16px; overflow: hidden; border: 1px solid var(--hair); border-radius: 18px; background: var(--bg); color: var(--fg); }
     .sequence-dialog[open] { display: flex; flex-direction: column; }
     .sequence-dialog::backdrop { background: rgb(0 0 0 / 72%); backdrop-filter: blur(5px); }
     .sequence-dialog-header { display: flex; flex: 0 0 auto; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--hair); }
