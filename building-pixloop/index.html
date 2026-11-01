@@ -133,7 +133,7 @@
     </figure>
 
     <article class="story-body">
-      <p>I started PixLoop because Sony’s Imaging Edge Mobile felt dated, like an app from a decade ago. I wanted to transfer photos I chose on my ZV‑1 to my phone, then browse the originals in a simple gallery. I wanted no account and no cloud service.</p>
+      <p>I started PixLoop because Sony’s Imaging Edge Mobile felt dated, like an app from a decade ago. On Oct 24, 2026, its <a href="https://apps.apple.com/us/app/sony-imaging-edge-mobile/id489191124" target="_blank" rel="noopener">U.S. App Store listing</a> showed 1.6 stars from 6.7K ratings. I wanted to transfer photos I chose on my ZV‑1 to my phone, then browse the originals in a simple gallery. I wanted no account and no cloud service.</p>
       <h2>I started with the wrong protocol</h2>
       <p>At first, I searched for ways to communicate with the camera and found PTP/IP on port <code>15740</code>. The Camera &amp; Imaging Products Association’s <a href="https://www.cipa.jp/std/documents/e/DC-X005.pdf" target="_blank" rel="noopener">DC-005 standard</a> defines PTP over TCP/IP networks, so I tried building around it. But the standard did not say that the ZV‑1 uses it for <em>Send to Smartphone</em>.</p>
       <p>I got PTP/IP to connect, but it could not transfer the selected photos. I had searched for a camera protocol without checking the ZV‑1’s specific phone-transfer workflow.</p>
@@ -164,16 +164,11 @@
 
       <h2>Interface bugs stopped basic actions</h2>
       <p>The interface had its own bugs. A long press intercepted the tap that should open a photo. A gesture sequence could leave the viewer stuck. The “Learn More” button responded only when someone tapped its text.</p>
-      <p>Each bug made an action behave differently from how it looked. A photo should open when someone taps it. A button should respond across its full area. The app should show what it is doing and offer a recovery step when something fails.</p>
-
-
-      <p>I also struggled with the app icon. I generated three rounds of icons in code and disliked them all. I switched to the ribbon emblem I wanted and prepared it for the app.</p>
       <p>KiroCrew helped me build the prototype and implement PixLoop. I used ChatGPT to shape its visual identity. Codex helped me test and challenge KiroCrew’s work. I checked the transfer flow on my own ZV‑1.</p>
 
       <h2>Where PixLoop stands</h2>
-      <p>JPEG transfers work with multiple photos on my ZV‑1. In one real-device run, a 4.75 MB JPEG reached Photos in about 1.8 seconds. I have not measured enough transfers to make a general speed claim. I still need to test video and RAW. After those tests, I will decide whether to prepare PixLoop for the App Store, add support for more cameras, or keep PixLoop for myself.</p>
+      <p>JPEG transfers work with multiple photos on my ZV‑1. Received files now go into a PixLoop album in Photos, and I can cancel queued files or the remaining work in a batch without removing files already saved. In one real-device run, a 4.75 MB JPEG reached Photos in about 1.8 seconds. I have not measured enough transfers to make a general speed claim. I still need to test video and RAW. After those tests, I will decide whether to prepare PixLoop for the App Store, add support for more cameras, or keep PixLoop for myself.</p>
 
-      <p class="story-source-note">App Store context: On Oct 24, 2026, the <a href="https://apps.apple.com/us/app/sony-imaging-edge-mobile/id489191124" target="_blank" rel="noopener">U.S. App Store listing</a> showed Imaging Edge Mobile at 1.6 stars from 6.7K ratings.</p>
       <div class="story-appreciation">
         <p>Enjoyed the story?</p>
         <script src="https://appreciate-button.com/widget.js" data-key="pk_a0682e73e47b21a5e98de5c90812bdb3" data-item="https://abdoaly.com/building-pixloop/" data-label="Love this story" data-count="bottom" async></script>
