@@ -258,7 +258,8 @@ sequenceDiagram
       <p>I had built the download steps but missed the final acknowledgement. I could open the file, so I thought the transfer had finished. The camera was waiting for PixLoop to send <code>X_TransferEnd</code>. Without that message, it could treat a good download as a failed transfer.</p>
       <h2>Retries need a stable photo identity</h2>
       <p>The camera assigns each file a number called a handle. That number can change after reconnect. If PixLoop treats it as the photo’s identity, it can mistake a previously received photo for a new one or request the wrong file.</p>
-      <p>PixLoop now identifies a camera file by its source URL, with file metadata as a fallback. It records the Photos asset created by each transfer. Before it skips a file, it checks that the asset still exists. If someone deletes the asset, PixLoop can download the file again.</p>
+      <p>For Sony SOAP files, PixLoop uses the original resource URL from the camera’s listing as the file key. If a transport does not provide a source URL, PixLoop uses the file name, size, and capture time in whole seconds. This fallback can match different files, so it does not guarantee identity across reconnects.</p>
+      <p>PixLoop also records the Photos asset created by each transfer. Before it skips a file, it checks that the corresponding asset still exists. If someone deletes the asset, PixLoop can download the file again.</p>
 
       <h2>The camera network had no internet</h2>
       <p>The camera’s Wi‑Fi network has no internet access. iOS may report that the phone has no internet route even while the camera connection still works. My first connection logic treated that report as a disconnection and dropped the camera link.</p>
