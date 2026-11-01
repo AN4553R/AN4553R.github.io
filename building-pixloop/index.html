@@ -78,9 +78,15 @@
       --appreciate-clicked: #e11d48;
       --appreciate-full: #e11d48;
     }
+    [data-theme="light"] .story-appreciation appreciate-button {
+      --appreciate-default: #c81e45;
+      --appreciate-hover: #a91638;
+      --appreciate-clicked: #b5173d;
+      --appreciate-full: #b5173d;
+    }
     .story-appreciation appreciate-button::part(count) {
       margin-top: -4px;
-      color: #fff;
+      color: var(--fg);
       font: 700 .72rem/1 var(--font-sans);
       text-align: center;
     }
@@ -129,8 +135,8 @@
     <article class="story-body">
       <p>I started PixLoop because Sony’s Imaging Edge Mobile felt dated, like an app from a decade ago. I wanted to transfer photos I chose on my ZV‑1 to my phone, then browse the originals in a simple gallery. I wanted no account and no cloud service.</p>
       <h2>I started with the wrong protocol</h2>
-      <p>At first, I built the transport around PTP/IP on port <code>15740</code>. The Camera &amp; Imaging Products Association’s <a href="https://www.cipa.jp/std/documents/e/DC-X005.pdf" target="_blank" rel="noopener">DC-005 standard</a> defines PTP over TCP/IP networks. That made PTP/IP seem like a reasonable choice for camera communication. But the standard did not say that the ZV‑1 uses it for <em>Send to Smartphone</em>.</p>
-      <p>PTP/IP connected. It failed to transfer the selected photos. I chose it because I knew it as a camera-tethering protocol. I had not checked how the ZV‑1 sent selected photos to a phone.</p>
+      <p>At first, I searched for ways to communicate with the camera and found PTP/IP on port <code>15740</code>. The Camera &amp; Imaging Products Association’s <a href="https://www.cipa.jp/std/documents/e/DC-X005.pdf" target="_blank" rel="noopener">DC-005 standard</a> defines PTP over TCP/IP networks, so I tried building around it. But the standard did not say that the ZV‑1 uses it for <em>Send to Smartphone</em>.</p>
+      <p>I got PTP/IP to connect, but it could not transfer the selected photos. I had searched for a camera protocol without checking the ZV‑1’s specific phone-transfer workflow.</p>
       <p>I found the protocol details in the open-source <a href="https://github.com/schorschii/ImagingEdge4Linux" target="_blank" rel="noopener">ImagingEdge4Linux project</a>. Its README describes SOAP for <em>Send to Smartphone</em> and PTP/IP for <em>Send to Computer</em>. I read the project’s <a href="https://raw.githubusercontent.com/schorschii/ImagingEdge4Linux/main/imaging-edge.py" target="_blank" rel="noopener"><code>imaging-edge.py</code> source</a>. It showed the endpoint and SOAP operations. The ZV‑1 uses Sony’s UPnP/SOAP services over HTTP at <code>192.168.122.1:64321</code>. I tested that flow on my ZV‑1.</p>
       <p>The source showed this transfer sequence:</p>
       <ol>
