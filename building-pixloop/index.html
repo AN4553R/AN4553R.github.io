@@ -68,6 +68,48 @@
     .story-body li + li { margin-top: 9px; }
     .story-body strong { color: var(--fg); font-weight: 600; }
     .story-body code { color: var(--fg); font: .88em var(--font-mono); overflow-wrap: anywhere; }
+    :root {
+      --sequence-fg: var(--fg);
+      --sequence-muted: var(--muted);
+      --sequence-accent: #176ec1;
+      --sequence-line: var(--hair);
+      --sequence-surface: var(--bg);
+      --sequence-note: #eee8df;
+    }
+    html[data-theme="dark"] {
+      --sequence-fg: #f0f4fa;
+      --sequence-muted: #b5c1d2;
+      --sequence-accent: #63aaff;
+      --sequence-line: #3a4a60;
+      --sequence-surface: #1d2635;
+      --sequence-note: #222d3e;
+    }
+    .transfer-sequence { margin: 28px 0 32px; padding: 18px 14px 14px; border: 1px solid var(--hair); border-radius: 10px; background: color-mix(in srgb, var(--fg) 2%, var(--bg)); }
+    .sequence-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .transfer-sequence h3 { margin: 0; font-size: 1rem; font-weight: 600; letter-spacing: -.02em; }
+    .sequence-open, .sequence-close { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; padding: 7px 12px; border: 1px solid var(--hair); border-radius: 999px; background: var(--bg); color: var(--fg); font: 600 .78rem/1 var(--font-sans); cursor: pointer; }
+    .sequence-open:hover, .sequence-close:hover { border-color: var(--sequence-accent); color: var(--sequence-accent); }
+    .sequence-visual { width: 100%; }
+    .sequence-visual .mermaid { margin: 0 auto; text-align: center; }
+    .sequence-visual svg { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+    .sequence-visual svg text,
+    .sequence-visual svg tspan { fill: var(--sequence-fg) !important; }
+    .sequence-visual svg .noteText { fill: var(--sequence-muted) !important; }
+    .sequence-caption { margin-top: 12px; color: var(--muted); font-size: .86rem; line-height: 1.7; }
+    .sequence-dialog { width: min(1100px, calc(100vw - 24px)); max-width: none; height: min(900px, calc(100dvh - 24px)); max-height: none; padding: 16px; overflow: hidden; border: 1px solid var(--hair); border-radius: 18px; background: var(--bg); color: var(--fg); }
+    .sequence-dialog[open] { display: flex; flex-direction: column; }
+    .sequence-dialog::backdrop { background: rgb(0 0 0 / 72%); backdrop-filter: blur(5px); }
+    .sequence-dialog-header { display: flex; flex: 0 0 auto; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--hair); }
+    .sequence-dialog-title { margin: 0; font-size: 1rem; font-weight: 600; }
+    .sequence-dialog-content { display: grid; flex: 1 1 auto; min-height: 0; place-items: center; overflow: hidden; padding-top: 12px; }
+    .sequence-dialog-content svg { width: 100% !important; max-width: none !important; height: 100% !important; max-height: none !important; object-fit: contain; }
+    @media (max-width: 600px) {
+      .transfer-sequence { padding: 14px 10px 12px; }
+      .sequence-open, .sequence-close { min-height: 34px; padding: 6px 10px; }
+      .sequence-dialog { padding: 12px; border-radius: 14px; }
+    }
+    .sequence-fallback { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .sequence-fallback[hidden] { display: none; }
     .callout { margin: 30px 0; padding: 20px 22px; border-left: 2px solid var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--bg)); }
     .callout p { margin: 0; }
     .story-source-note { margin-top: 26px !important; color: var(--muted-2) !important; font-size: .78rem !important; }
@@ -159,41 +201,81 @@
     </figure>
 
     <article class="story-body">
-      <p>I started PixLoop because Sony’s Imaging Edge Mobile felt dated, like an app from a decade ago. On Oct 24, 2026, its <a href="https://apps.apple.com/us/app/sony-imaging-edge-mobile/id489191124" target="_blank" rel="noopener">U.S. App Store listing</a> showed 1.6 stars from 6.7K ratings. I wanted to transfer photos I chose on my ZV‑1 to my phone, then browse the originals in a simple gallery. I wanted no account and no cloud service.</p>
+      <p>I started PixLoop because Sony’s Imaging Edge Mobile felt dated, like an app from a decade ago. On October 18, 2026, its <a href="https://apps.apple.com/us/app/sony-imaging-edge-mobile/id489191124" target="_blank" rel="noopener">U.S. App Store listing</a> showed 1.6 stars from around 6.7K ratings. I wanted to transfer photos I chose on my ZV-1 to my phone, then browse the originals in a simple gallery. I wanted no account and no cloud service.</p>
       <h2>I started with the wrong protocol</h2>
-      <p>At first, I searched for ways to communicate with the camera and found PTP/IP on port <code>15740</code>. The Camera &amp; Imaging Products Association’s <a href="https://www.cipa.jp/std/documents/e/DC-X005.pdf" target="_blank" rel="noopener">DC-005 standard</a> defines PTP over TCP/IP networks, so I tried building around it. But the standard did not say that the ZV‑1 uses it for <em>Send to Smartphone</em>.</p>
-      <p>I got PTP/IP to connect, but it could not transfer the selected photos. I had searched for a camera protocol without checking the ZV‑1’s specific phone-transfer workflow.</p>
+      <p>I searched for a way to communicate with the camera and found PTP/IP on port <code>15740</code>. The Camera &amp; Imaging Products Association’s <a href="https://www.cipa.jp/std/documents/e/DC-X005.pdf" target="_blank" rel="noopener">DC-005 standard</a> defines PTP over TCP/IP. I tried that protocol. The standard does not say that the ZV‑1 uses PTP/IP for <em>Send to Smartphone</em>.</p>
+      <p>PixLoop connected over PTP/IP, but it could not transfer the selected photos. I had searched for a camera protocol without checking the ZV‑1’s specific phone-transfer workflow.</p>
       <p>I found the protocol details in the open-source <a href="https://github.com/schorschii/ImagingEdge4Linux" target="_blank" rel="noopener">ImagingEdge4Linux project</a>. Its README describes SOAP for <em>Send to Smartphone</em> and PTP/IP for <em>Send to Computer</em>. I read the project’s <a href="https://raw.githubusercontent.com/schorschii/ImagingEdge4Linux/main/imaging-edge.py" target="_blank" rel="noopener"><code>imaging-edge.py</code> source</a>. It showed the endpoint and SOAP operations. The ZV‑1 uses Sony’s UPnP/SOAP services over HTTP at <code>192.168.122.1:64321</code>. I tested that flow on my ZV‑1.</p>
-      <p>The source showed this transfer sequence:</p>
-      <ol>
-        <li>Start the transfer.</li>
-        <li>Read the camera’s push queue.</li>
-        <li>Download each selected original and save it to Photos.</li>
-        <li>Send the final acknowledgement.</li>
-      </ol>
+      <figure class="transfer-sequence" aria-labelledby="transfer-sequence-title">
+        <div class="sequence-heading">
+          <h3 id="transfer-sequence-title">Conceptual transfer sequence</h3>
+          <button class="sequence-open" id="sequenceOpen" type="button" aria-haspopup="dialog" aria-controls="sequenceDialog" disabled>
+            <span aria-hidden="true">⤢</span> Enlarge
+          </button>
+        </div>
+        <div class="sequence-visual">
+          <pre class="mermaid">
+sequenceDiagram
+    participant App as PixLoop
+    participant Camera as Sony ZV-1
+    participant Album as Phone Photos Album
+
+    App->>Camera: Start camera transfer (X_TransferStart)
+    App->>Camera: Read camera-selected files (Browse PushRoot)
+    Camera-->>App: Camera-selected file listing
+
+    loop Each selected file, one at a time
+        App->>Camera: Download original
+        Camera-->>App: File bytes
+        App->>Album: Save file resource to album
+        Album-->>App: Save result
+    end
+
+    alt Queue settled, at least one file saved, not cancelled
+        App->>Camera: Acknowledge batch (X_TransferEnd, ErrCode=0), once per batch
+        Camera-->>App: SOAP response
+    else All files failed or batch was cancelled
+        Note over App,Camera: No X_TransferEnd
+    end
+          </pre>
+        </div>
+        <figcaption class="sequence-caption">
+          If PushRoot is empty, PixLoop browses PhotoRoot so you can choose files on the phone. Files transfer one at a time. Failed imports are recorded and the queue continues; a camera connection drop requeues the active file. PixLoop sends <code>X_TransferEnd</code> once when the queue settles if at least one file was saved and the batch was not cancelled, even if another file failed.
+        </figcaption>
+        <p class="sequence-fallback" id="sequenceFallback" hidden>
+          PixLoop starts a Sony transfer session, browses the camera’s selected files, then downloads and saves files one at a time. It acknowledges the batch once if at least one file was saved and the batch was not cancelled.
+        </p>
+        <noscript><p class="sequence-fallback">PixLoop starts a Sony transfer session, browses the camera’s push queue or phone-browsable library, then downloads and saves files one at a time. It sends one successful batch acknowledgement when at least one file was saved and the batch was not cancelled.</p></noscript>
+      </figure>
+      <dialog class="sequence-dialog" id="sequenceDialog" aria-labelledby="sequenceDialogTitle">
+        <div class="sequence-dialog-header">
+          <p class="sequence-dialog-title" id="sequenceDialogTitle">Conceptual transfer sequence</p>
+          <button class="sequence-close" id="sequenceClose" type="button" aria-label="Close enlarged diagram">Close <span aria-hidden="true">×</span></button>
+        </div>
+        <div class="sequence-dialog-content" id="sequenceDialogContent"></div>
+      </dialog>
       <p>On my first real transfer, the JPEG reached Photos. The Sony ZV‑1 still said <em>Sending cancelled</em>.</p>
       <p>I had built the download steps but missed the final acknowledgement. I could open the file, so I thought the transfer had finished. The camera was waiting for PixLoop to send <code>X_TransferEnd</code>. Without that message, it could treat a good download as a failed transfer.</p>
-      <p>I also found bugs in file identity, network handling, Photos callbacks, and interface actions.</p>
-
       <h2>Retries need a stable photo identity</h2>
-      <p>The camera assigns each file a number called a handle. A handle can change after the app reconnects. If PixLoop uses that handle as the file’s identity, a retry can treat an old photo as new. It can also select the wrong photo.</p>
-      <p>I changed how PixLoop identifies each photo. It now uses a stable source identity. It records the Photos asset it created and checks that the asset still exists before skipping a transfer. If someone deletes the photo, the next run can download it again.</p>
+      <p>The camera assigns each file a number called a handle. That number can change after reconnect. If PixLoop treats it as the photo’s identity, it can mistake a previously received photo for a new one or request the wrong file.</p>
+      <p>PixLoop now identifies a camera file by its source URL, with file metadata as a fallback. It records the Photos asset created by each transfer. Before it skips a file, it checks that the asset still exists. If someone deletes the asset, PixLoop can download the file again.</p>
 
       <h2>The camera network had no internet</h2>
-      <p>The camera’s Wi‑Fi network has no internet access. iOS may report that the network route is unavailable while the phone remains connected to the camera. My first connection logic read that report as a disconnection and dropped the working camera link.</p>
+      <p>The camera’s Wi‑Fi network has no internet access. iOS may report that the phone has no internet route even while the camera connection still works. My first connection logic treated that report as a disconnection and dropped the camera link.</p>
       <p>I changed the app to track internet access and camera access separately. I also made background reconnects distinct from a person tapping Connect, so the app responds to that tap.</p>
 
       <h2>Photos called the image handler more than once</h2>
-      <p>The Photos framework can call an image request handler more than once. The handler may return a quick preview first, then the full image. I wrapped the callback in async code with a continuation that expected one result. Photos called the handler again, and the app tried to resume the continuation twice. The app crashed.</p>
-      <p>Swift checks the continuation’s types. It cannot control how many times the framework calls the handler. I added a guard so a second callback cannot resume the continuation.</p>
-      <p>I also needed to preserve the camera original. PixLoop imports the downloaded resource directly into Photos. This keeps the original bytes and metadata. The app can process a preview while leaving the source file unchanged.</p>
+      <p>The Photos framework can call an image request handler more than once. It may send a quick preview first, then the full image. I wrapped the callback in async code with a continuation that expected one result. The second callback tried to resume that continuation again, and the app crashed.</p>
+      <p>Swift checks that a continuation receives the correct type. It does not prevent the framework from calling the handler more than once. I added a guard so only the first final callback can resume the continuation.</p>
+      <p>I also wanted to avoid changing the camera file during import. PixLoop adds the downloaded file resource directly to the Phone Photos Album instead of creating a new image from a rendered preview. That avoids re-encoding the image during this step; I have not independently verified byte-for-byte preservation or every metadata field.</p>
 
       <h2>Interface bugs stopped basic actions</h2>
-      <p>The interface had its own bugs. A long press intercepted the tap that should open a photo. A gesture sequence could leave the viewer stuck. The “Learn More” button responded only when someone tapped its text.</p>
+      <p>The interface had its own bugs. A long press intercepted the tap that should open a photo. Another gesture could leave the photo viewer stuck. The “Learn More” button responded only when someone tapped its text.</p>
       <p>KiroCrew helped me build the prototype and implement PixLoop. I used ChatGPT to shape its visual identity. Codex helped me test and challenge KiroCrew’s work. I checked the transfer flow on my own ZV‑1.</p>
 
       <h2>Where PixLoop stands</h2>
-      <p>JPEG transfers work with multiple photos on my ZV‑1. Received files now go into a PixLoop album in Photos, and I can cancel queued files or the remaining work in a batch without removing files already saved. In one real-device run, a 4.75 MB JPEG reached Photos in about 1.8 seconds. I have not measured enough transfers to make a general speed claim. I still need to test video and RAW. After those tests, I will decide whether to prepare PixLoop for the App Store, add support for more cameras, or keep PixLoop for myself.</p>
+      <p>JPEG transfers work with multiple photos on my ZV‑1. Received files go into a PixLoop album in Photos. I can cancel queued files or the rest of a batch without removing files already saved.</p>
+      <p>In one real-device run, a 4.75 MB JPEG reached Photos in about 1.8 seconds. I have not measured enough transfers to make a general speed claim. I still need to test video and RAW. Then I will decide whether to prepare PixLoop for the App Store, support more cameras, or keep it for myself.</p>
 
       <div class="story-appreciation">
         <p>Enjoyed the story?</p>
@@ -228,6 +310,7 @@
         : TIPS[mode];
       tip.textContent = tipText;
       btn.setAttribute('aria-label', tipText);
+      window.dispatchEvent(new Event('pixloop-theme-change'));
     }
 
     const stored = localStorage.getItem('theme') || 'auto';
@@ -243,6 +326,110 @@
       localStorage.setItem('theme', next);
       applyTheme(next);
     });
+  </script>
+  <script type="module">
+    const diagram = document.querySelector('.transfer-sequence .mermaid');
+    const fallback = document.getElementById('sequenceFallback');
+    const openButton = document.getElementById('sequenceOpen');
+    const dialog = document.getElementById('sequenceDialog');
+    const dialogContent = document.getElementById('sequenceDialogContent');
+    const closeButton = document.getElementById('sequenceClose');
+
+    if (diagram) {
+      const source = diagram.textContent.trim();
+      let mermaid;
+
+      function applySequenceColors() {
+        const style = getComputedStyle(document.documentElement);
+        const color = name => style.getPropertyValue(name).trim();
+        const set = (nodes, property, value) => nodes.forEach(node => node.style.setProperty(property, value, 'important'));
+
+        for (const svg of document.querySelectorAll('.sequence-visual svg, .sequence-dialog-content svg')) {
+          set(svg.querySelectorAll('text, tspan'), 'fill', color('--sequence-fg'));
+          set(svg.querySelectorAll('.noteText'), 'fill', color('--sequence-muted'));
+          set(svg.querySelectorAll('rect.actor, .actor rect'), 'fill', color('--sequence-surface'));
+          set(svg.querySelectorAll('rect.actor, .actor rect'), 'stroke', color('--sequence-accent'));
+          set(svg.querySelectorAll('text.actor, .actor text'), 'fill', color('--sequence-fg'));
+          set(svg.querySelectorAll('text.actor, .actor text'), 'stroke', 'none');
+          set(svg.querySelectorAll('.actor-line, .loopLine'), 'stroke', color('--sequence-line'));
+          set(svg.querySelectorAll('.messageLine0, .messageLine1'), 'stroke', color('--sequence-accent'));
+          set(svg.querySelectorAll('.note, .labelBox'), 'fill', color('--sequence-note'));
+          set(svg.querySelectorAll('.note, .labelBox'), 'stroke', color('--sequence-line'));
+          set(svg.querySelectorAll('marker polygon'), 'fill', color('--sequence-accent'));
+          set(svg.querySelectorAll('marker polyline'), 'stroke', color('--sequence-accent'));
+        }
+      }
+
+      try {
+        ({ default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'));
+        await document.fonts.ready;
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'strict',
+          theme: 'base',
+          themeVariables: {
+            background: 'transparent',
+            primaryColor: '#f5f1ea',
+            primaryTextColor: '#1a1816',
+            primaryBorderColor: '#176ec1',
+            lineColor: '#6b635a',
+            secondaryColor: '#eee8df',
+            tertiaryColor: '#f5f1ea',
+            actorBkg: '#f5f1ea',
+            actorBorder: '#176ec1',
+            actorTextColor: '#1a1816',
+            actorLineColor: '#d6cebd',
+            signalColor: '#176ec1',
+            signalTextColor: '#1a1816',
+            labelBoxBkgColor: '#eee8df',
+            labelBoxBorderColor: '#d6cebd',
+            labelTextColor: '#1a1816',
+            loopTextColor: '#1a1816',
+            noteBkgColor: '#eee8df',
+            noteBorderColor: '#d6cebd',
+            noteTextColor: '#6b635a',
+            activationBkgColor: '#eee8df',
+            activationBorderColor: '#d6cebd',
+            sequenceNumberColor: '#f5f1ea',
+            fontFamily: 'Geist, ui-sans-serif, system-ui, sans-serif',
+            fontSize: '14px'
+          },
+          themeCSS: 'rect.actor,.actor rect{fill:var(--sequence-surface)!important;stroke:var(--sequence-accent)!important}text.actor,.actor text{fill:var(--sequence-fg)!important;stroke:none!important}.actor-line{stroke:var(--sequence-line)!important}.messageLine0,.messageLine1{stroke:var(--sequence-accent)!important}.labelBox{fill:var(--sequence-note)!important;stroke:var(--sequence-line)!important}.loopLine{stroke:var(--sequence-line)!important}.note{fill:var(--sequence-note)!important;stroke:var(--sequence-line)!important}.activation0,.activation1{fill:var(--sequence-note)!important;stroke:var(--sequence-line)!important}',
+          sequence: {
+            useMaxWidth: true,
+            actorMargin: 36,
+            messageMargin: 30,
+            diagramMarginX: 12,
+            diagramMarginY: 12
+          }
+        });
+
+        const { svg, bindFunctions } = await mermaid.render('pixloop-transfer-sequence', source);
+        diagram.innerHTML = svg;
+        bindFunctions?.(diagram);
+        applySequenceColors();
+        window.addEventListener('pixloop-theme-change', applySequenceColors);
+        openButton.disabled = false;
+        fallback.hidden = true;
+
+        openButton.addEventListener('click', () => {
+          const renderedDiagram = diagram.querySelector('svg');
+          if (!renderedDiagram || !dialog || !dialogContent) return;
+          dialogContent.replaceChildren(renderedDiagram.cloneNode(true));
+          dialog.showModal();
+          closeButton.focus();
+        });
+        closeButton.addEventListener('click', () => dialog.close());
+        dialog.addEventListener('click', event => {
+          if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener('close', () => openButton.focus());
+      } catch (error) {
+        diagram.hidden = true;
+        fallback.hidden = false;
+        console.error('Could not render PixLoop transfer sequence:', error);
+      }
+    }
   </script>
 </body>
 </html>
